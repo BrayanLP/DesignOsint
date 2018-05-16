@@ -1,9 +1,1001 @@
-section#slider
-    .slider-lp
-        -for(var i = 0; i < 2 ; i++)
-            div
-                img(src="img/slider.png", alt="")
-
-section#inicio
-
-section#contacto
+.container-scroller
+    // partial:../../partials/_navbar.html
+    nav.navbar.col-lg-12.col-12.p-0.fixed-top.d-flex.flex-row.navbar-success
+        .text-center.navbar-brand-wrapper.d-flex.align-items-center.justify-content-center
+            a.navbar-brand.brand-logo(href='../../index.html')
+                img(src='../../images/logo.svg', alt='logo')
+            a.navbar-brand.brand-logo-mini(href='../../index.html')
+                img(src='../../images/logo-mini.svg', alt='logo')
+        .navbar-menu-wrapper.d-flex.align-items-stretch
+            button.navbar-toggler.navbar-toggler.align-self-center(type='button', data-toggle='minimize')
+                span.mdi.mdi-menu
+            ul.navbar-nav
+                li.nav-item.d-none.d-lg-block
+                    a.nav-link
+                        i#fullscreen-button.mdi.mdi-fullscreen
+                li.nav-item
+                    form.nav-link.form-inline.mt-2.mt-md-0.d-none.d-lg-flex.search
+                        input.form-control(type='text', placeholder='Search for something...')
+            ul.navbar-nav.navbar-nav-right
+                li.nav-item.dropdown.d-none.d-lg-flex
+                    a#languageDropdown.nav-link.dropdown-toggle(href='#', data-toggle='dropdown')
+                        | English
+                    .dropdown-menu.navbar-dropdown(aria-labelledby='languageDropdown')
+                        a.dropdown-item(href='#')
+                            | French
+                        .dropdown-divider
+                        a.dropdown-item(href='#')
+                            | Spain
+                        .dropdown-divider
+                        a.dropdown-item(href='#')
+                            | Latin
+                        .dropdown-divider
+                        a.dropdown-item(href='#')
+                            | Japanese
+                li.nav-item.dropdown
+                    a#messageDropdown.nav-link.count-indicator.dropdown-toggle(href='#', data-toggle='dropdown', aria-expanded='false')
+                        i.mdi.mdi-email-outline
+                        span.count.bg-warning 5
+                    .dropdown-menu.dropdown-menu-right.navbar-dropdown.preview-list(aria-labelledby='messageDropdown')
+                        h6.p-3.mb-0 Messages
+                        .dropdown-divider
+                        a.dropdown-item.preview-item
+                            .preview-thumbnail
+                                img.profile-pic(src='../../images/faces/face4.jpg', alt='image')
+                            .preview-item-content
+                                h6.preview-subject.ellipsis Mark sent you a message
+                                p.text-muted
+                                    | 1 Minutes ago
+                        .dropdown-divider
+                        a.dropdown-item.preview-item
+                            .preview-thumbnail
+                                img.profile-pic(src='../../images/faces/face2.jpg', alt='image')
+                            .preview-item-content
+                                h6.preview-subject.ellipsis Cregh sent you a message
+                                p.text-muted
+                                    | 15 Minutes ago
+                        .dropdown-divider
+                        a.dropdown-item.preview-item
+                            .preview-thumbnail
+                                img.profile-pic(src='../../images/faces/face3.jpg', alt='image')
+                            .preview-item-content
+                                h6.preview-subject.ellipsis Profile picture updated
+                                p.text-muted
+                                    | 18 Minutes ago
+                        .dropdown-divider
+                        h6.p-3.mb-0.text-center 4 new messages
+                li.nav-item.dropdown
+                    a#notificationDropdown.nav-link.count-indicator.dropdown-toggle(href='#', data-toggle='dropdown')
+                        i.mdi.mdi-bell-outline
+                        span.count.bg-danger 7
+                    .dropdown-menu.dropdown-menu-right.navbar-dropdown.preview-list(aria-labelledby='notificationDropdown')
+                        h6.p-3.mb-0 Notifications
+                        .dropdown-divider
+                        a.dropdown-item.preview-item
+                            .preview-thumbnail
+                                .preview-icon.bg-success
+                                    i.mdi.mdi-calendar
+                            .preview-item-content
+                                h6.preview-subject Event today
+                                p.text-muted.ellipsis
+                                    | Just a reminder that you have an event today
+                        .dropdown-divider
+                        a.dropdown-item.preview-item
+                            .preview-thumbnail
+                                .preview-icon.bg-warning
+                                    i.mdi.mdi-settings
+                            .preview-item-content
+                                h6.preview-subject Settings
+                                p.text-muted.ellipsis
+                                    | Update dashboard
+                        .dropdown-divider
+                        a.dropdown-item.preview-item
+                            .preview-thumbnail
+                                .preview-icon.bg-info
+                                    i.mdi.mdi-link-variant
+                            .preview-item-content
+                                h6.preview-subject Launch Admin
+                                p.text-muted.ellipsis
+                                    | New admin wow!
+                        .dropdown-divider
+                        h6.p-3.mb-0.text-center See all notifications
+                li.nav-item.dropdown
+                    a#profileDropdown.nav-link.dropdown-toggle.nav-profile(href='#', data-toggle='dropdown', aria-expanded='false')
+                        img(src='../../images/faces/face1.jpg', alt='image')
+                        span.d-none.d-lg-inline Daniel Russiel
+                    .dropdown-menu.navbar-dropdown.w-100(aria-labelledby='profileDropdown')
+                        a.dropdown-item(href='#')
+                            i.mdi.mdi-cached.mr-2.text-success
+                            |                 Activity Log
+                        .dropdown-divider
+                        a.dropdown-item(href='#')
+                            i.mdi.mdi-logout.mr-2.text-primary
+                            |                 Signout
+                li.nav-item.nav-settings.d-none.d-lg-block
+                    a.nav-link(href='#')
+                        i.mdi.mdi-backburger
+            button.navbar-toggler.navbar-toggler-right.d-lg-none.align-self-center(type='button', data-toggle='offcanvas')
+                span.mdi.mdi-menu
+    // partial
+    .container-fluid.page-body-wrapper
+        // partial:../../partials/_settings-panel.html
+        .theme-setting-wrapper
+            #settings-trigger
+                i.mdi.mdi-settings
+            #theme-settings.settings-panel
+                i.settings-close.mdi.mdi-close
+                p.settings-heading SIDEBAR SKINS
+                #sidebar-light-theme.sidebar-bg-options.selected
+                    .img-ss.rounded-circle.bg-light.border.mr-3
+                    | Light
+                #sidebar-dark-theme.sidebar-bg-options
+                    .img-ss.rounded-circle.bg-dark.border.mr-3
+                    | Dark
+                p.settings-heading.mt-2 HEADER SKINS
+                .color-tiles.mx-0.px-4
+                    .tiles.primary
+                    .tiles.success
+                    .tiles.warning
+                    .tiles.danger
+                    .tiles.pink
+                    .tiles.info
+                    .tiles.dark
+                    .tiles.default
+        #right-sidebar.settings-panel
+            i.settings-close.mdi.mdi-close
+            ul#setting-panel.nav.nav-tabs(role='tablist')
+                li.nav-item
+                    a#todo-tab.nav-link.active(data-toggle='tab', href='#todo-section', role='tab', aria-controls='todo-section', aria-expanded='true') TO DO LIST
+                li.nav-item
+                    a#chats-tab.nav-link(data-toggle='tab', href='#chats-section', role='tab', aria-controls='chats-section') CHATS
+            #setting-content.tab-content
+                #todo-section.tab-pane.fade.show.active.scroll-wrapper(role='tabpanel', aria-labelledby='todo-section')
+                    .add-items.d-flex.px-3.mb-0
+                        form.form.w-100
+                            .form-group.d-flex
+                                input.form-control.todo-list-input(type='text', placeholder='Add To-do')
+                                button.add.btn.btn-primary.todo-list-add-btn(type='submit') Add
+                    .list-wrapper.px-3
+                        ul.d-flex.flex-column-reverse.todo-list
+                            li
+                                .form-check
+                                    label.form-check-label
+                                        input.checkbox(type='checkbox')
+                                        |                         Team review meeting at 3.00 PM
+                                i.remove.mdi.mdi-close-circle-outline
+                            li
+                                .form-check
+                                    label.form-check-label
+                                        input.checkbox(type='checkbox')
+                                        |                         Prepare for presentation
+                                i.remove.mdi.mdi-close-circle-outline
+                            li
+                                .form-check
+                                    label.form-check-label
+                                        input.checkbox(type='checkbox')
+                                        |                         Resolve all the low priority tickets due today
+                                i.remove.mdi.mdi-close-circle-outline
+                            li.completed
+                                .form-check
+                                    label.form-check-label
+                                        input.checkbox(type='checkbox', checked='')
+                                        |                         Schedule meeting for next week
+                                i.remove.mdi.mdi-close-circle-outline
+                            li.completed
+                                .form-check
+                                    label.form-check-label
+                                        input.checkbox(type='checkbox', checked='')
+                                        |                         Project review
+                                i.remove.mdi.mdi-close-circle-outline
+                    .events.py-4.border-bottom.px-3
+                        .wrapper.d-flex.mb-2
+                            i.mdi.mdi-circle-outline.text-primary.mr-2
+                            span Feb 11 2018
+                        p.mb-0.font-weight-thin.text-gray Creating component page
+                        p.text-gray.mb-0 build a js based app
+                    .events.pt-4.px-3
+                        .wrapper.d-flex.mb-2
+                            i.mdi.mdi-circle-outline.text-primary.mr-2
+                            span Feb 7 2018
+                        p.mb-0.font-weight-thin.text-gray Meeting with Alisa
+                        p.text-gray.mb-0 Call Sarah Graves
+                // To do section tab ends
+                #chats-section.tab-pane.fade(role='tabpanel', aria-labelledby='chats-section')
+                    .d-flex.align-items-center.justify-content-between.border-bottom
+                        p.settings-heading.border-top-0.mb-3.pl-3.pt-0.border-bottom-0.pb-0 Friends
+                        small.settings-heading.border-top-0.mb-3.pt-0.border-bottom-0.pb-0.pr-3.font-weight-normal See All
+                    ul.chat-list
+                        li.list.active
+                            .profile
+                                img(src='../../images/faces/face1.jpg', alt='image')
+                                span.online
+                            .info
+                                p Thomas Douglas
+                                p Available
+                            small.text-muted.my-auto 19 min
+                        li.list
+                            .profile
+                                img(src='../../images/faces/face2.jpg', alt='image')
+                                span.offline
+                            .info
+                                .wrapper.d-flex
+                                    p Catherine
+                                p Away
+                            .badge.badge-success.badge-pill.my-auto.mx-2 4
+                            small.text-muted.my-auto 23 min
+                        li.list
+                            .profile
+                                img(src='../../images/faces/face3.jpg', alt='image')
+                                span.online
+                            .info
+                                p Daniel Russell
+                                p Available
+                            small.text-muted.my-auto 14 min
+                        li.list
+                            .profile
+                                img(src='../../images/faces/face4.jpg', alt='image')
+                                span.offline
+                            .info
+                                p James Richardson
+                                p Away
+                            small.text-muted.my-auto 2 min
+                        li.list
+                            .profile
+                                img(src='../../images/faces/face5.jpg', alt='image')
+                                span.online
+                            .info
+                                p Madeline Kennedy
+                                p Available
+                            small.text-muted.my-auto 5 min
+                        li.list
+                            .profile
+                                img(src='../../images/faces/face6.jpg', alt='image')
+                                span.online
+                            .info
+                                p Sarah Graves
+                                p Available
+                            small.text-muted.my-auto 47 min
+                // chat tab ends
+        // partial
+        // partial:../../partials/_sidebar.html
+        nav#sidebar.sidebar.sidebar-offcanvas
+            ul.nav
+                li.nav-item.nav-profile
+                    .nav-link.d-flex
+                        .profile-image
+                            img(src='../../images/faces/face1.jpg', alt='image')
+                            span.online-status.online
+                            // change class online to offline or busy as needed
+                        .profile-name
+                            p.name
+                                | Daniel Russiel
+                            p.designation
+                                | Senior Architect
+                li.nav-item.nav-category
+                    span.nav-link Main
+                li.nav-item
+                    a.nav-link(href='../../index.html')
+                        i.icon-layout.menu-icon
+                        span.menu-title Dashboard
+                        span.badge.badge-primary.badge-pill 1
+                li.nav-item
+                    a.nav-link(href='../widgets.html')
+                        i.icon-server.menu-icon
+                        span.menu-title Widgets
+                        span.badge.badge-danger New
+                li.nav-item.nav-category
+                    span.nav-link Layouts
+                li.nav-item
+                    a.nav-link(data-toggle='collapse', href='#page-layouts', aria-expanded='false', aria-controls='page-layouts')
+                        i.icon-box.menu-icon
+                        span.menu-title Page Layouts
+                        i.menu-arrow
+                    #page-layouts.collapse
+                        ul.nav.flex-column.sub-menu
+                            li.nav-item
+                                a.nav-link(href='boxed-layout.html') Boxed
+                            li.nav-item
+                                a.nav-link(href='rtl-layout.html') RTL
+                            li.nav-item
+                                a.nav-link(href='horizontal-menu.html') Horizontal Menu
+                li.nav-item
+                    a.nav-link(data-toggle='collapse', href='#sidebar-layouts', aria-expanded='false', aria-controls='sidebar-layouts')
+                        i.icon-globe.menu-icon
+                        span.menu-title Sidebar Layouts
+                        i.menu-arrow
+                    #sidebar-layouts.collapse
+                        ul.nav.flex-column.sub-menu
+                            li.nav-item
+                                a.nav-link(href='compact-menu.html') Compact menu
+                            li.nav-item
+                                a.nav-link(href='sidebar-collapsed.html') Icon menu
+                            li.nav-item
+                                a.nav-link(href='sidebar-hidden.html') Sidebar Hidden
+                            li.nav-item
+                                a.nav-link(href='sidebar-hidden-overlay.html') Sidebar Overlay
+                            li.nav-item
+                                a.nav-link(href='sidebar-fixed.html') Sidebar Fixed
+                li.nav-item.nav-category
+                    span.nav-link UI Features
+                li.nav-item
+                    a.nav-link(data-toggle='collapse', href='#ui-basic', aria-expanded='false', aria-controls='ui-basic')
+                        i.icon-layers.menu-icon
+                        span.menu-title Basic UI Elements
+                        i.menu-arrow
+                    #ui-basic.collapse
+                        ul.nav.flex-column.sub-menu
+                            li.nav-item
+                                a.nav-link(href='../ui-features/accordions.html') Accordions
+                            li.nav-item
+                                a.nav-link(href='../ui-features/buttons.html') Buttons
+                            li.nav-item
+                                a.nav-link(href='../ui-features/badges.html') Badges
+                            li.nav-item
+                                a.nav-link(href='../ui-features/breadcrumbs.html') Breadcrumbs
+                            li.nav-item
+                                a.nav-link(href='../ui-features/dropdowns.html') Dropdowns
+                            li.nav-item
+                                a.nav-link(href='../ui-features/modals.html') Modals
+                            li.nav-item
+                                a.nav-link(href='../ui-features/progress.html') Progress bar
+                            li.nav-item
+                                a.nav-link(href='../ui-features/pagination.html') Pagination
+                            li.nav-item
+                                a.nav-link(href='../ui-features/tabs.html') Tabs
+                            li.nav-item
+                                a.nav-link(href='../ui-features/typography.html') Typography
+                            li.nav-item
+                                a.nav-link(href='../ui-features/tooltips.html') Tooltips
+                li.nav-item
+                    a.nav-link(data-toggle='collapse', href='#ui-advanced', aria-expanded='false', aria-controls='ui-advanced')
+                        i.icon-air-play.menu-icon
+                        span.menu-title Advanced Elements
+                        i.menu-arrow
+                    #ui-advanced.collapse
+                        ul.nav.flex-column.sub-menu
+                            li.nav-item
+                                a.nav-link(href='../ui-features/dragula.html') Dragula
+                            li.nav-item
+                                a.nav-link(href='../ui-features/carousel.html') Carousel
+                            li.nav-item
+                                a.nav-link(href='../ui-features/clipboard.html') Clipboard
+                            li.nav-item
+                                a.nav-link(href='../ui-features/context-menu.html') Context menu
+                            li.nav-item
+                                a.nav-link(href='../ui-features/loaders.html') Loaders
+                            li.nav-item
+                                a.nav-link(href='../ui-features/slider.html') Slider
+                            li.nav-item
+                                a.nav-link(href='../ui-features/colcade.html') Colcade
+                            li.nav-item
+                                a.nav-link(href='../ui-features/tour.html') Tour
+                li.nav-item
+                    a.nav-link(href='../ui-features/popups.html')
+                        i.icon-speech-bubble.menu-icon
+                        span.menu-title Popups
+                        span.badge.badge-info.badge-pill 8
+                li.nav-item
+                    a.nav-link(href='../ui-features/notifications.html')
+                        i.icon-bell.menu-icon
+                        span.menu-title Notifications
+                li.nav-item
+                    a.nav-link(data-toggle='collapse', href='#icons', aria-expanded='false', aria-controls='icons')
+                        i.icon-eye.menu-icon
+                        span.menu-title Icons
+                        i.menu-arrow
+                    #icons.collapse
+                        ul.nav.flex-column.sub-menu
+                            li.nav-item
+                                a.nav-link(href='../icons/flag-icons.html') Flag icons
+                            li.nav-item
+                                a.nav-link(href='../icons/font-awesome.html') Font Awesome
+                            li.nav-item
+                                a.nav-link(href='../icons/simple-line-icon.html') Simple line icons
+                            li.nav-item
+                                a.nav-link(href='../icons/themify.html') Themify icons
+                li.nav-item.nav-category
+                    span.nav-link Form
+                li.nav-item
+                    a.nav-link(href='../forms/basic_elements.html')
+                        i.icon-file.menu-icon
+                        span.menu-title Form Elements
+                li.nav-item
+                    a.nav-link(href='../forms/advanced_elements.html')
+                        i.icon-disc.menu-icon
+                        span.menu-title Advanced Elements
+                        span.badge.badge-success.badge-pill 4
+                li.nav-item
+                    a.nav-link(href='../forms/validation.html')
+                        i.icon-flag.menu-icon
+                        span.menu-title Validation
+                li.nav-item
+                    a.nav-link(href='../forms/wizard.html')
+                        i.icon-cog.menu-icon
+                        span.menu-title Wizard
+                        span.badge.badge-danger.badge-pill New
+                li.nav-item
+                    a.nav-link(href='../forms/text_editor.html')
+                        i.icon-clipboard.menu-icon
+                        span.menu-title Text editors
+                li.nav-item
+                    a.nav-link(href='../forms/code_editor.html')
+                        i.menu-icon.icon-ribbon
+                        span.menu-title Code editors
+                li.nav-item.nav-category
+                    span.nav-link Data Representation
+                li.nav-item
+                    a.nav-link(data-toggle='collapse', href='#charts', aria-expanded='false', aria-controls='charts')
+                        i.icon-bar-graph.menu-icon
+                        span.menu-title Charts
+                        i.menu-arrow
+                    #charts.collapse
+                        ul.nav.flex-column.sub-menu
+                            li.nav-item
+                                a.nav-link(href='../charts/chartjs.html') ChartJs
+                            li.nav-item
+                                a.nav-link(href='../charts/morris.html') Morris
+                            li.nav-item
+                                a.nav-link(href='../charts/flot-chart.html') Float
+                            li.nav-item
+                                a.nav-link(href='../charts/google-charts.html') Google charts
+                            li.nav-item
+                                a.nav-link(href='../charts/sparkline.html') Sparkline js
+                            li.nav-item
+                                a.nav-link(href='../charts/c3.html') C3 charts
+                            li.nav-item
+                                a.nav-link(href='../charts/chartist.html') Chartists
+                            li.nav-item
+                                a.nav-link(href='../charts/justGage.html') JustGage
+                li.nav-item
+                    a.nav-link(data-toggle='collapse', href='#tables', aria-expanded='false', aria-controls='tables')
+                        i.icon-grid-2.menu-icon
+                        span.menu-title Tables
+                        i.menu-arrow
+                    #tables.collapse
+                        ul.nav.flex-column.sub-menu
+                            li.nav-item
+                                a.nav-link(href='../tables/basic-table.html') Basic table
+                            li.nav-item
+                                a.nav-link(href='../tables/data-table.html') Data table
+                            li.nav-item
+                                a.nav-link(href='../tables/js-grid.html') Js-grid
+                            li.nav-item
+                                a.nav-link(href='../tables/sortable-table.html') Sortable table
+                li.nav-item
+                    a.nav-link(data-toggle='collapse', href='#maps', aria-expanded='false', aria-controls='maps')
+                        i.icon-map.menu-icon
+                        span.menu-title Maps
+                        i.menu-arrow
+                    #maps.collapse
+                        ul.nav.flex-column.sub-menu
+                            li.nav-item
+                                a.nav-link(href='../maps/mapeal.html') Mapeal
+                            li.nav-item
+                                a.nav-link(href='../maps/vector-map.html') Vector Map
+                            li.nav-item
+                                a.nav-link(href='../maps/google-maps.html') Google Map
+                li.nav-item.nav-category
+                    span.nav-link Sample pages
+                li.nav-item
+                    a.nav-link(data-toggle='collapse', href='#auth', aria-expanded='false', aria-controls='auth')
+                        i.icon-lock.menu-icon
+                        span.menu-title Authentication
+                        i.menu-arrow
+                    #auth.collapse
+                        ul.nav.flex-column.sub-menu
+                            li.nav-item
+                                a.nav-link(href='../samples/login.html')  Login 
+                            li.nav-item
+                                a.nav-link(href='../samples/login-2.html')  Login 2 
+                            li.nav-item
+                                a.nav-link(href='../samples/register.html')  Register 
+                            li.nav-item
+                                a.nav-link(href='../samples/register-2.html')  Register 2 
+                            li.nav-item
+                                a.nav-link(href='../samples/lock-screen.html')  Lockscreen 
+                li.nav-item
+                    a.nav-link(data-toggle='collapse', href='#error', aria-expanded='false', aria-controls='error')
+                        i.icon-help.menu-icon
+                        span.menu-title Error pages
+                        i.menu-arrow
+                    #error.collapse
+                        ul.nav.flex-column.sub-menu
+                            li.nav-item
+                                a.nav-link(href='../samples/error-404.html')  404 
+                            li.nav-item
+                                a.nav-link(href='../samples/error-500.html')  500 
+                li.nav-item
+                    a.nav-link(data-toggle='collapse', href='#general-pages', aria-expanded='false', aria-controls='general-pages')
+                        i.icon-location.menu-icon
+                        span.menu-title General Pages
+                        i.menu-arrow
+                    #general-pages.collapse
+                        ul.nav.flex-column.sub-menu
+                            li.nav-item
+                                a.nav-link(href='../samples/blank-page.html')  Blank Page 
+                            li.nav-item
+                                a.nav-link(href='../samples/landing-page.html')  Landing Page 
+                            li.nav-item
+                                a.nav-link(href='../samples/timeline.html')  Timeline 
+                            li.nav-item
+                                a.nav-link(href='../samples/profile.html')  Profile 
+                            li.nav-item
+                                a.nav-link(href='../samples/faq.html')  FAQ 
+                            li.nav-item
+                                a.nav-link(href='../samples/faq-2.html')  FAQ 2 
+                            li.nav-item
+                                a.nav-link(href='../samples/news-grid.html')  News grid 
+                            li.nav-item
+                                a.nav-link(href='../samples/search-results.html')  Search Results 
+                            li.nav-item
+                                a.nav-link(href='../samples/portfolio.html')  Portfolio 
+                li.nav-item
+                    a.nav-link(data-toggle='collapse', href='#e-commerce', aria-expanded='false', aria-controls='e-commerce')
+                        i.icon-briefcase.menu-icon
+                        span.menu-title E-commerce
+                        i.menu-arrow
+                    #e-commerce.collapse
+                        ul.nav.flex-column.sub-menu
+                            li.nav-item
+                                a.nav-link(href='../samples/pricing-table.html')  Pricing 
+                            li.nav-item
+                                a.nav-link(href='../samples/invoice.html')  Invoice 
+                            li.nav-item
+                                a.nav-link(href='../samples/orders.html')  Orders 
+                li.nav-item.nav-category
+                    span.nav-link Applications
+                li.nav-item
+                    a.nav-link(href='../apps/email.html')
+                        i.icon-mail.menu-icon
+                        span.menu-title E-mail
+                li.nav-item
+                    a.nav-link(href='../apps/calendar.html')
+                        i.icon-paper.menu-icon
+                        span.menu-title Calendar
+                li.nav-item
+                    a.nav-link(href='../apps/gallery.html')
+                        i.icon-image.menu-icon
+                        span.menu-title Gallery
+                li.nav-item
+                    a.nav-link(href='../apps/todo.html')
+                        i.icon-file-add.menu-icon
+                        span.menu-title Todo
+                li.nav-item.nav-doc
+                    a.nav-link.bg-primary(href='../documentation.html')
+                        i.icon-book.menu-icon
+                        span.menu-title Documentation
+        // partial
+        .main-panel
+            .content-wrapper
+                .row
+                    .col-md-4.grid-margin.stretch-card
+                        .card.text-black
+                            .card-body
+                                h4.card-title Monthly Statistics
+                                .row.mt-5
+                                    .col-6
+                                        .wrapper
+                                            h5.mb-1 Bounce Rate
+                                            h4.mb-1
+                                                strong 23.32%
+                                            small.mb-0.mt-3.text-danger 2.7% increased
+                                    .col-6.d-flex.justify-content-end
+                                        .wrapper
+                                            h5.mb-1 Page Views
+                                            h4.mb-1
+                                                strong 42.32%
+                                            small.mb-0.mt-3.text-primary 1.5% decreased
+                            .chart-container
+                                canvas#chart-activity(height='250')
+                    .col-md-4.grid-margin.d-flex.align-items-stretch
+                        .row
+                            .col-12.grid-margin.stretch-card
+                                .card
+                                    .card-body
+                                        h4.card-title Revenue
+                                        .row.d-flex.justify-content-between.align-items-end.mb-3
+                                            .col-5
+                                                p.mb-0 Purchases
+                                                h4.mb-0
+                                                    strong 20.89%
+                                            .col-7
+                                                .float-right
+                                                    #purchase-chart
+                                                        | 6, 5, 7, 10, 9, 3, 5, 9, 7, 3, 5 ,2, 5, 7, 6, 8, 6, 3, 9, 7, 9, 2, 8
+                                        .row.d-flex.justify-content-between.align-items-end
+                                            .col-5
+                                                p.mb-0 Time on site
+                                                h4.mb-0
+                                                    strong 83.32%
+                                            .col-7
+                                                .float-right
+                                                    #time-chart
+                                                        | 6, 5, 7, 10, 3, 9, 5, 9, 7, 9, 5 ,2, 5, 7, 9, 8, 6, 11, 9, 7, 7, 6, 5
+                            .col-12.stretch-card
+                                .card
+                                    .card-body.py-4
+                                        h4.card-title Revenue
+                                        .row.d-flex.justify-content-center.align-items-center
+                                            .col-6.col-md-6.grid-margin.grid-margin-md-0.d-flex.flex-column.align-items-center.justify-content-center
+                                                .w-75.mx-auto
+                                                    #revenueCircle1.progressbar-js-circle
+                                                p.mb-0.mt-2 Sales
+                                                h4.mb-0
+                                                    strong 65.00%
+                                            .col-6.col-md-6.grid-margin.grid-margin-md-0.d-flex.flex-column.align-items-center.justify-content-center.border-left
+                                                .w-75.mx-auto
+                                                    #revenueCircle2.progressbar-js-circle
+                                                p.mb-0.mt-2 Purchases
+                                                h4.mb-0
+                                                    strong 80.26%
+                    .col-md-4.grid-margin.stretch-card
+                        .card
+                            .card-body
+                                h4.card-title User Rating
+                                h6.text-muted.text-center.mb-1 Average Rating 4.0
+                                .d-flex.justify-content-center
+                                    select#star-rating(name='rating')
+                                        option(value='1') 1
+                                        option(value='2') 2
+                                        option(value='3') 3
+                                        option(value='4') 4
+                                        option(value='5') 5
+                                table.table.table-borderless.mt-3
+                                    tbody
+                                        tr
+                                            td.p-0.text-gray
+                                                small.mr-1 1
+                                                span ★
+                                            td.w-100
+                                                .progress.progress-sm
+                                                    .progress-bar.bg-danger(role='progressbar', style='width: 7%', aria-valuenow='7', aria-valuemin='0', aria-valuemax='100')
+                                            td.p-0
+                                                small.text-gray 7
+                                        tr
+                                            td.p-0.text-gray
+                                                small.mr-1 2
+                                                span ★
+                                            td.w-100
+                                                .progress.progress-sm
+                                                    .progress-bar.bg-danger(role='progressbar', style='width: 27%', aria-valuenow='27', aria-valuemin='0', aria-valuemax='100')
+                                            td.p-0
+                                                small.text-gray 27
+                                        tr
+                                            td.p-0.text-gray
+                                                small.mr-1 3
+                                                span ★
+                                            td.w-100
+                                                .progress.progress-sm
+                                                    .progress-bar.bg-warning(role='progressbar', style='width: 64%', aria-valuenow='64', aria-valuemin='0', aria-valuemax='100')
+                                            td.p-0
+                                                small.text-gray 64
+                                        tr
+                                            td.p-0.text-gray
+                                                small.mr-1 4
+                                                span ★
+                                            td.w-100
+                                                .progress.progress-sm
+                                                    .progress-bar.bg-success(role='progressbar', style='width: 93%', aria-valuenow='43', aria-valuemin='0', aria-valuemax='100')
+                                            td.p-0
+                                                small.text-gray 93
+                                        tr
+                                            td.p-0.text-gray
+                                                small.mr-1 5
+                                                span ★
+                                            td.w-100
+                                                .progress.progress-sm
+                                                    .progress-bar.bg-success(role='progressbar', style='width: 82%', aria-valuenow='97', aria-valuemin='0', aria-valuemax='100')
+                                            td.p-0
+                                                small.text-gray 82
+                                p.text-center.mt-3 17 of your friends liked this
+                                .wrapper.d-flex.justify-content-center.image-group
+                                    img.img-xs.rounded-circle(src='../../images/faces/face1.jpg', alt='profile')
+                                    img.img-xs.rounded-circle(src='../../images/faces/face2.jpg', alt='profile')
+                                    img.img-xs.rounded-circle(src='../../images/faces/face3.jpg', alt='profile')
+                                    img.img-xs.rounded-circle(src='../../images/faces/face4.jpg', alt='profile')
+                                    img.img-xs.rounded-circle(src='../../images/faces/face5.jpg', alt='profile')
+                                    img.img-xs.rounded-circle(src='../../images/faces/face6.jpg', alt='profile')
+                .row
+                    .col-md-4.grid-margin.stretch-card
+                        .card
+                            .card-body
+                                h4.card-title Recommended
+                                .wrapper.d-flex.align-items-center.py-2.border-bottom
+                                    img.img-sm.rounded-circle(src='../../images/faces/face12.jpg', alt='profile')
+                                    .wrapper.ml-3
+                                        h6.mb-0
+                                            strong Erwin E. Brown
+                                        small.text-muted.mb-0 San Fransisco, CA
+                                    .badge.badge-pill.badge-primary.ml-auto.px-1.py-1
+                                        i.mdi.mdi-check.font-weight-bold
+                                .wrapper.d-flex.align-items-center.py-2.border-bottom
+                                    img.img-sm.rounded-circle(src='../../images/faces/face23.jpg', alt='profile')
+                                    .wrapper.ml-3
+                                        h6.mb-0
+                                            strong Madeline Kennedy
+                                        small.text-muted.mb-0 San Fransisco, CA
+                                    .badge.badge-pill.badge-success.ml-auto.px-1.py-1
+                                        i.mdi.mdi-plus.font-weight-bold
+                                .wrapper.d-flex.align-items-center.py-2.border-bottom
+                                    img.img-sm.rounded-circle(src='../../images/faces/face26.jpg', alt='profile')
+                                    .wrapper.ml-3
+                                        h6.mb-0
+                                            strong George A. Llanes
+                                        small.text-muted.mb-0 San Fransisco, CA
+                                    .badge.badge-pill.badge-primary.ml-auto.px-1.py-1
+                                        i.mdi.mdi-check.font-weight-bold
+                                .wrapper.d-flex.align-items-center.py-2.border-bottom
+                                    img.img-sm.rounded-circle(src='../../images/faces/face27.jpg', alt='profile')
+                                    .wrapper.ml-3
+                                        h6.mb-0
+                                            strong Madeline Kennedy
+                                        small.text-muted.mb-0 Carleton University, Ontario
+                                    .badge.badge-pill.badge-success.ml-auto.px-1.py-1
+                                        i.mdi.mdi-plus.font-weight-bold
+                                .wrapper.d-flex.align-items-center.py-2.mb-4
+                                    img.img-sm.rounded-circle(src='../../images/faces/face25.jpg', alt='profile')
+                                    .wrapper.ml-3
+                                        h6.mb-0
+                                            strong Rafell John
+                                        small.text-muted.mb-0 Alaska, USA
+                                    .badge.badge-pill.badge-success.ml-auto.px-1.py-1
+                                        i.mdi.mdi-plus.font-weight-bold
+                    .col-md-8.grid-margin.stretch-card
+                        .card
+                            .card-body
+                                .d-flex.align-items-center.mb-3
+                                    h4.card-title Revenue
+                                    p.text-muted.ml-auto 17 February 2018
+                                .row
+                                    .col-md-7
+                                        .alert.alert-outline-primary.d-flex.justify-content-between(role='alert')
+                                            p.mb-0.d-inline-block Added API call to update track!
+                                            i.mdi.mdi-alert-circle-outline.mr-0
+                                        .list
+                                            span.text-small
+                                                strong @Michael
+                                                |  Cras sit amet nibh libero, in gravida nulla.
+                                            .d-flex.justify-content-between.pb-3.mt-2.border-bottom
+                                                span.text-small.text-muted 17 February 2018 08:48 PM
+                                                span.text-small.text-muted Reply
+                                        .list.pt-2
+                                            span.text-small
+                                                strong @Doyle
+                                                |  Bell Cras sit amet nibh libero, in gravida nulla, Nulla vel metus.
+                                            .d-flex.justify-content-between.pb-3.mt-2.border-bottom
+                                                span.text-small.text-muted 19 March 2018 10:21 PM
+                                                span.text-small.text-muted Reply
+                                        .list.pt-2
+                                            span.text-small
+                                                strong @Maxine
+                                                |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque.
+                                            .d-flex.justify-content-between.pb-3.mt-2
+                                                span.text-small.text-muted 02 May 2018 03:31 AM
+                                                span.text-small.text-muted Reply
+                                    .col-md-5.pl-md-4
+                                        img.rounded.img-lg(src='../../images/faces/face4.jpg', alt='profile image')
+                                        h4.font-weight-bold.mt-3 Phyllis K. Maciel
+                                        p.text-small An UI/UX Designer living in Jakarta,Indonesia.
+                                        .d-flex.mt-4
+                                            span.text-primary.mr-4
+                                                i.mdi.mdi-map-marker-outline.mr-1
+                                                | Indonesia
+                                            span.text-primary
+                                                i.mdi.mdi-email-outline.mr-1
+                                                | Hire Me
+                                        small.text-muted Let me know if you want to get in touch.
+                .row
+                    .col-12.grid-margin.stretch-card
+                        .card
+                            .card-body
+                                .row
+                                    .col-12.col-md-3.col-sm-6.mb-4.mb-md-0.border-right-md.d-flex.justify-content-between.justify-content-md-center
+                                        .wrapper.d-flex.align-items-center.justify-content-center
+                                            .btn.social-btn.btn-twitter.btn-rounded.d-inline-block
+                                                i.mdi.mdi-twitter
+                                            .wrapper.d-flex.flex-column.ml-4
+                                                p.font-weight-bold.mb-2 Twitter
+                                                p.mb-0.text-muted 656 follower
+                                    .col-12.col-md-3.col-sm-6.mb-4.mb-md-0.border-right-md.d-flex.justify-content-between.justify-content-md-center
+                                        .wrapper.d-flex.align-items-center.justify-content-center
+                                            .btn.social-btn.btn-facebook.btn-rounded.d-inline-block
+                                                i.mdi.mdi-facebook
+                                            .wrapper.d-flex.flex-column.ml-4
+                                                p.font-weight-bold.mb-2 Facebook
+                                                p.mb-0.text-muted 1,235 friends
+                                    .col-12.col-md-3.col-sm-6.mb-4.mb-md-0.border-right-md.d-flex.justify-content-between.justify-content-md-center
+                                        .wrapper.d-flex.align-items-center.justify-content-center
+                                            .btn.social-btn.btn-google.btn-rounded.d-inline-block
+                                                i.mdi.mdi-google-plus
+                                            .wrapper.d-flex.flex-column.ml-4
+                                                p.font-weight-bold.mb-2 Google+
+                                                p.mb-0.text-muted 835 friends
+                                    .col-12.col-md-3.col-sm-6.d-flex.justify-content-between.justify-content-md-center
+                                        .wrapper.d-flex.align-items-center.justify-content-center
+                                            .btn.social-btn.btn-warning.btn-rounded.d-inline-block
+                                                i.mdi.mdi-rss
+                                            .wrapper.d-flex.flex-column.ml-4
+                                                p.font-weight-bold.mb-2 Subscribers
+                                                p.mb-0.text-muted 335 people
+                .row
+                    .col-md-7.grid-margin.stretch-card
+                        .card
+                            .card-body
+                                h4.card-title Recent Updates
+                                .image-grid.row
+                                    .col-md-6.pr-md-2
+                                        img.w-100.img-fluid.rounded(src='../../images/dashboard/Img_1.jpg', alt='images')
+                                    .col-md-6.pl-md-2
+                                        .row
+                                            .col-md-12.mb-3.mt-3.mt-md-0
+                                                img.w-100.img-fluid.rounded(src='../../images/dashboard/Img_2.jpg', alt='images')
+                                            .col-md-12
+                                                img.w-100.img-fluid.rounded(src='../../images/dashboard/Img_3.jpg', alt='images')
+                                p.mt-3
+                                    | Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus, nascetur ridiculus mus.
+                                .d-flex.align-items-center
+                                    span.d-none.d-sm-inline-block
+                                        strong jack Menqu
+                                        |  All of Rwanda is at high elevation
+                                    span.ml-auto.text-muted
+                                        | 7:30 pm
+                                        i.ml-2.mdi.mdi-heart-outline
+                    .col-md-5.grid-margin.stretch-card
+                        .card
+                            .card-body
+                                h4.card-title Todo list
+                                .add-items.d-flex
+                                    input.form-control.todo-list-input(type='text', placeholder='What do you need to do today?')
+                                    button.add.btn.btn-primary.font-weight-bold.todo-list-add-btn Add
+                                .list-wrapper
+                                    ul.d-flex.flex-column-reverse.todo-list
+                                        li
+                                            .form-check
+                                                label.form-check-label
+                                                    input.checkbox(type='checkbox')
+                                                    | 														Meeting with Alisa
+                                            i.remove.mdi.mdi-close-circle-outline
+                                        li
+                                            .form-check
+                                                label.form-check-label
+                                                    input.checkbox(type='checkbox')
+                                                    | 														Create invoice
+                                            i.remove.mdi.mdi-close-circle-outline
+                                        li
+                                            .form-check
+                                                label.form-check-label
+                                                    input.checkbox(type='checkbox')
+                                                    | 														Print Statements
+                                            i.remove.mdi.mdi-close-circle-outline
+                                        li.completed
+                                            .form-check
+                                                label.form-check-label
+                                                    input.checkbox(type='checkbox', checked='')
+                                                    | 														Prepare for presentation
+                                            i.remove.mdi.mdi-close-circle-outline
+                                        li
+                                            .form-check
+                                                label.form-check-label
+                                                    input.checkbox(type='checkbox')
+                                                    | 														Pick up kids from school
+                                            i.remove.mdi.mdi-close-circle-outline
+                .row
+                    .col-md-4.grid-margin.stretch-card
+                        .card
+                            .card-body
+                                h4.card-title Admin Dept
+                                .w-50.mt-5.mb-4.mx-auto
+                                    #revenueCircle3.progressbar-js-circle
+                                h4.text-center
+                                    strong Storage Size
+                                h4.text-center
+                                    strong 1.98TB
+                                .d-flex.row.mt-5
+                                    .col
+                                        p.text-left.mb-2 2.86 GB free
+                                        h4.text-left
+                                            strong 58.8%
+                                    .col
+                                        p.text-right.mb-2 1.30 GB free
+                                        h4.text-right
+                                            strong 35.4%
+                    .col-md-8.grid-margin.stretch-card
+                        .card
+                            .card-body
+                                h4.card-title Recent Updates
+                                .table-responsive
+                                    table.table
+                                        tr
+                                            th Asigned Name
+                                            th Progress
+                                            th Amount
+                                            th Deadline
+                                        tr
+                                            td
+                                                .d-flex.align-items-center
+                                                    div
+                                                        img(src='../../images/faces/face2.jpg', alt='profile image')
+                                                    .ml-3
+                                                        p.mb-1 Jessica T. Phillips
+                                                        small.text-muted Sales Assistant
+                                            td
+                                                canvas#areaChart_1(style='height:30px; max-width:130px;')
+                                            td $450.12
+                                            td Mar 08 2018
+                                        tr
+                                            td
+                                                .d-flex.align-items-center
+                                                    div
+                                                        img(src='../../images/faces/face1.jpg', alt='profile image')
+                                                    .ml-3
+                                                        p.mb-1 Luke J. Sain
+                                                        small.text-muted Software Engineer
+                                            td
+                                                canvas#areaChart_2(style='height:30px; max-width:130px;')
+                                            td $124.66
+                                            td Mar 09 2018
+                                        tr
+                                            td
+                                                .d-flex.align-items-center
+                                                    div
+                                                        img(src='../../images/faces/face4.jpg', alt='profile image')
+                                                    .ml-3
+                                                        p.mb-1 Mark C. Diaz
+                                                        small.text-muted Accountant
+                                            td
+                                                canvas#areaChart_3(style='height:30px; max-width:130px;')
+                                            td $763.00
+                                            td Mar 10 2018
+                                        tr
+                                            td
+                                                .d-flex.align-items-center
+                                                    div
+                                                        img(src='../../images/faces/face6.jpg', alt='profile image')
+                                                    .ml-3
+                                                        p.mb-1 Margeret V. Ligon
+                                                        small.text-muted Software Engineer
+                                            td
+                                                canvas#areaChart_4(style='height:30px; max-width:130px;')
+                                            td $120.76
+                                            td Mar 11 2018
+                                        tr
+                                            td
+                                                .d-flex.align-items-center
+                                                    div
+                                                        img(src='../../images/faces/face8.jpg', alt='profile image')
+                                                    .ml-3
+                                                        p.mb-1 Messy max
+                                                        small.text-muted Personnel Lead
+                                            td
+                                                canvas#areaChart_5(style='height:30px; max-width:130px;')
+                                            td $450.20
+                                            td Mar 12 2018
+            // content-wrapper ends
+            // partial:../../partials/_footer.html
+            footer.footer
+                .container-fluid.clearfix
+                    span.text-muted.d-block.text-center.text-sm-left.d-sm-inline-block
+                        | Copyright © 2018 
+                        a(href='http://www.urbanui.com/', target='_blank') urbanui
+                        | . All rights reserved.
+                    span.float-none.float-sm-right.d-block.mt-1.mt-sm-0.text-center
+                        | Hand-crafted & made with 
+                        i.mdi.mdi-heart.text-danger
+            // partial
+        // main-panel ends
+    // page-body-wrapper ends
+// container-scroller
+// plugins:js
+script(src='../../vendors/js/vendor.bundle.base.js')
+script(src='../../vendors/js/vendor.bundle.addons.js')
+// endinject
+// inject:js
+script(src='../../js/off-canvas.js')
+script(src='../../js/hoverable-collapse.js')
+script(src='../../js/misc.js')
+script(src='../../js/settings.js')
+script(src='../../js/todolist.js')
+// endinject
+// Custom js for this page
+script(src='../../js/dashboard.js')
+// End custom js for this page 
